@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time project</title>
+    <style>
+        .mywatch{
+          position: relative;
+           top: 200px;
+           margin: 0 auto;
+            height: 220px;
+            width: 430px;
+           border: 1px solid rgb(178, 171, 218);
+           background-color: rgb(38, 12, 144);
+           border-radius: 5px;
+           box-shadow:rgb(20, 65, 213);
+           padding: 50px;
+           color: white;
+        }
+        span{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mywatch">
+        <span class="h"></span>
+        <span class="m"></span><br>
+        <span class="s"></span>
+    </div>
+    <script>
+       function mytime(){
+       var mydate=new Date();
+        var hr,min=(mydate.getMinutes()<10)? "0" + mydate.getMinutes():mydate.getMinutes(),
+        sec=(mydate.getSeconds()<10)? "0" + mydate.getSeconds():mydate.getSeconds(),
+        m=(mydate.getHours()>=12)? "PM":"AM";
+
+        if(mydate.getHours()==0)
+        {
+            hr=12;
+        }
+        else if(mydate.getHours()>12)
+        {
+            hr=mydate.getHours()-12;
+        }
+        else{
+            hr=mydate.getHours();
+        }
+
+        var currenttime=hr + ":" + min + ":" + sec + ":";
+
+        document.getElementsByClassName("h")[0].innerHTML=currenttime;
+        document.getElementsByClassName("m")[0].innerHTML=m;
+
+        var myday=["Sunday","Monday","Tuesday","Wednesday","Thursday","friday","Saturday"],
+        mymonth=["January","Februray","March","April","May","June","July","August","September","October","November","December"],
+
+        day=mydate.getDate();
+
+        var currentdate=myday[mydate.getDay()] + "," + mymonth[mydate.getMonth()]; + day;
+        document.getElementsByClassName("s")[0].innerHTML=currentdate;
+       }
+       mytime();
+
+       setInterval(() => {
+        mytime();
+       }, 1000);
+    </script>
+</body>
+</html>
